@@ -8,32 +8,43 @@
     <link rel="stylesheet" href="css/site.css" type="text/css">
 </head>
 <body>
-    <form name="signInSignUpForm">
+    <form name="calculatorForm">
         <div class="calculator">
             <div class="calculator_output">0</div>
             <div class="calculator_keys">
-                <button id="operator_plus" class="calculator_key calculator_key-operator">+</button>
-                <button id="operator_minus" class="calculator_key calculator_key-operator">-</button>
-                <button id="operator_multiply" class="calculator_key calculator_key-operator">&times;</button>
-                <button id="operator_divide" class="calculator_key calculator_key-operator">÷</button>
-                <button id="value_7" class="calculator_key">7</button>
-                <button id="value_8" class="calculator_key">8</button>
-                <button id="value_9" class="calculator_key">9</button>
-                <button id="value_4" class="calculator_key">4</button>
-                <button id="value_5" class="calculator_key">5</button>
-                <button id="value_6" class="calculator_key">6</button>
-                <button id="value_1" class="calculator_key">1</button>
-                <button id="value_2" class="calculator_key">2</button>
-                <button id="value_3" class="calculator_key">3</button>
-                <button id="value_0" class="calculator_key">0</button>
-                <button id="operator_dot" class="calculator_key">.</button>
-                <button id="operator_delite" class="calculator_key">AC</button>
-                <button id="operator_result" class="calculator_key calculator_key-enter">=</button>
+                <button type="button" id="operator_plus" class="calculator_key calculator_key-operator">+</button>
+                <button type="button" id="operator_minus" class="calculator_key calculator_key-operator">-</button>
+                <button type="button" id="operator_multiply" class="calculator_key calculator_key-operator">&times;</button>
+                <button type="button" id="operator_divide" class="calculator_key calculator_key-operator">÷</button>
+                <button type="button" id="value_7" class="calculator_key">7</button>
+                <button type="button" id="value_8" class="calculator_key">8</button>
+                <button type="button" id="value_9" class="calculator_key">9</button>
+                <button type="button" id="value_4" class="calculator_key">4</button>
+                <button type="button" id="value_5" class="calculator_key">5</button>
+                <button type="button" id="value_6" class="calculator_key">6</button>
+                <button type="button" id="value_1" class="calculator_key">1</button>
+                <button type="button" id="value_2" class="calculator_key">2</button>
+                <button type="button" id="value_3" class="calculator_key">3</button>
+                <button type="button" id="value_0" class="calculator_key">0</button>
+                <button type="button" id="operator_dot" class="calculator_key">.</button>
+                <button type="button" id="operator_delite" class="calculator_key">AC</button>
+                <button type="button" id="operator_result" class="calculator_key calculator_key-enter">=</button>
             </div>
         </div>
     </form>
 
     <script>
+        // click on any button
+        document.forms["calculatorForm"].addEventListener("button", e => {
+            e.preventDefault();
+            const id = form.elements["id"].value;
+            if (id == "value_1")
+                click_on_value("1");
+        });
+
+        // click on value
+        async function click_on_value(buttonValue) { }
+
     </script>
 </body>
 </html>
