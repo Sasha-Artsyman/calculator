@@ -3,7 +3,7 @@
     box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
     margin-inline-start: auto;
     margin-inline-end: auto;
-    margin-block-start: 2em;
+    margin-block-start: 4em;
     max-inline-size: 22rem;
     overflow: hidden;
     color: hsl(202, 11%, 29%);
@@ -12,7 +12,7 @@
 .calculator_output {
     background: hsl(255, 100%, 100%);
     font-size: 4.2rem;
-    padding-block-start: 3rem;
+    padding-block-start: 1.25rem;
     padding-block-end: 0.5rem;
     padding-inline-end: 1.25rem;
     text-align: end;
