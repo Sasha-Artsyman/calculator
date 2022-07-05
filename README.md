@@ -1,4 +1,4 @@
-Classic calculator (ASP.NET)
+Simple calculator (ASP.NET)
 ==============
 A simple web-based calculator.
 
