@@ -27,7 +27,7 @@
                 <button type="submit" id="value_3" class="calculator_key" onclick="clickValueID(this.id)">3</button>
                 <button type="submit" id="value_0" class="calculator_key" onclick="clickValueID(this.id)">0</button>
                 <button type="submit" id="operator_dot" class="calculator_key" onclick="clickValueID(this.id)">.</button>
-                <button type="submit" id="operator_delite" class="calculator_key">AC</button>
+                <button type="submit" id="operator_delite" class="calculator_key" onclick="clickOperatorID(this.id)">AC</button>
                 <button type="submit" id="operator_result" class="calculator_key calculator_key-enter">=</button>
             </div>
         </div>
@@ -64,6 +64,10 @@
                 click_on_value(".");
         }
 
+        function clickOperatorID(clickID) {
+            click_on_operator(clickID);
+        }
+
         // click on value
         async function click_on_value(buttonValue) {
             const response = await fetch("api/calculations", {
@@ -71,7 +75,7 @@
                 headers: { "Accept": "application/json", "Content-Type": "application/json" },
                 body: JSON.stringify({
                     thValue: buttonValue,
-                    thResult: 0,
+                    thResult: "",
                     thOperation: ""
                 })
             });
@@ -79,6 +83,24 @@
                 const calculation = await response.json();
                 var calculator_output = document.getElementById('calculator_output');
                 calculator_output.textContent = calculation.thValue;
+            }
+        }
+
+        // click on operator
+        async function click_on_operator(operatorValue) {
+            const response = await fetch("api/calculations", {
+                method: "PUT",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    thValue: "",
+                    thResult: "",
+                    thOperation: operatorValue
+                })
+            });
+            if (response.ok === true) {
+                const calculation = await response.json();
+                var calculator_output = document.getElementById('calculator_output');
+                calculator_output.textContent = calculation.thResult;
             }
         }
 
