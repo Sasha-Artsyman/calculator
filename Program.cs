@@ -1,6 +1,6 @@
 List<Operations> calculations = new List<Operations>
 {
-    new() { ThValue = "", ThResult = 0, ThOperation = ""}
+    new() { ThValue = "0", ThResult = "0", ThOperation = ""}
 };
 
 var builder = WebApplication.CreateBuilder();
@@ -25,7 +25,25 @@ app.MapPut("/api/calculations", (Operations calculationData) =>
 
     var calculation = calculations.FirstOrDefault();
 
-    calculation.ThValue = calculation.ThValue + calculationData.ThValue;
+    if (calculationData.ThValue != "")
+    {
+        if (calculation.ThValue == "0")
+            calculation.ThValue = "";
+
+        if (calculation.ThValue == "" && calculationData.ThValue == ".")
+            calculation.ThValue = "0.";
+        else
+            calculation.ThValue = calculation.ThValue + calculationData.ThValue;
+    }
+    else if (calculationData.ThOperation != "")
+    {
+        if (calculationData.ThOperation == "operator_delite")
+        {
+            calculation.ThValue = "0";
+            calculation.ThResult = "0";
+            calculation.ThOperation = "";
+        }
+    }
 
     return Results.Json(calculation);
 
@@ -35,6 +53,6 @@ app.Run();
 public class Operations
 {
     public string ThValue { get; set; } = "";
-    public decimal ThResult { get; set; } = 0;
+    public string ThResult { get; set; } = "";
     public string ThOperation { get; set; } = "";
 }
