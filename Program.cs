@@ -32,6 +32,8 @@ app.MapPut("/api/calculations", (Operations calculationData) =>
 
         if (calculation.ThValue == "" && calculationData.ThValue == ".")
             calculation.ThValue = "0.";
+        else if ((calculationData.ThValue == "." && calculation.ThValue.IndexOf(".") >= 0) || (calculation.ThValue == "0" && calculationData.ThValue == "0"))
+            calculation.ThValue = calculation.ThValue;
         else
             calculation.ThValue = calculation.ThValue + calculationData.ThValue;
     }
@@ -43,6 +45,37 @@ app.MapPut("/api/calculations", (Operations calculationData) =>
             calculation.ThResult = "0";
             calculation.ThOperation = "";
         }
+        else
+        {
+            if (calculation.ThOperation == "operator_plus")
+            {
+                calculation.ThResult = Convert.ToString(Convert.ToDecimal(calculation.ThResult.Replace(".", ",")) + Convert.ToDecimal(calculation.ThValue.Replace(".", ",")));
+                calculation.ThResult = calculation.ThResult.Replace(",", ".");
+                calculation.ThValue = "0";
+            }
+            else if (calculation.ThOperation == "operator_minus")
+            {
+                calculation.ThResult = Convert.ToString(Convert.ToDecimal(calculation.ThResult.Replace(".", ",")) - Convert.ToDecimal(calculation.ThValue.Replace(".", ",")));
+                calculation.ThResult = calculation.ThResult.Replace(",", ".");
+                calculation.ThValue = "0";
+            }
+            else if (calculation.ThOperation == "operator_multiply")
+            {
+                calculation.ThResult = Convert.ToString(Math.Round(Convert.ToDecimal(calculation.ThResult.Replace(".", ",")) * Convert.ToDecimal(calculation.ThValue.Replace(".", ",")), 3)).Replace(",", ".");
+                calculation.ThValue = "0";
+            }
+            else if (calculation.ThOperation == "operator_divide" && Convert.ToDecimal(calculation.ThValue) != 0)
+            {
+                calculation.ThResult = Convert.ToString(Math.Round(Convert.ToDecimal(calculation.ThResult.Replace(".", ",")) / Convert.ToDecimal(calculation.ThValue.Replace(".", ",")), 3)).Replace(",", ".");
+                calculation.ThValue = "0";
+            }
+            else if (calculation.ThOperation != "operator_result")
+            {
+                calculation.ThResult = calculation.ThValue;
+                calculation.ThValue = "0";
+            }
+            calculation.ThOperation = calculationData.ThOperation;
+        }
     }
 
     return Results.Json(calculation);
@@ -50,6 +83,7 @@ app.MapPut("/api/calculations", (Operations calculationData) =>
 });
 
 app.Run();
+
 public class Operations
 {
     public string ThValue { get; set; } = "";
