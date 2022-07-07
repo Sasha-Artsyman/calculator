@@ -12,10 +12,10 @@
         <div class="calculator">
             <div id="calculator_output" class="calculator_output">0</div>
             <div class="calculator_keys">
-                <button type="submit" id="operator_plus" class="calculator_key calculator_key-operator">+</button>
-                <button type="submit" id="operator_minus" class="calculator_key calculator_key-operator">-</button>
-                <button type="submit" id="operator_multiply" class="calculator_key calculator_key-operator">&times;</button>
-                <button type="submit" id="operator_divide" class="calculator_key calculator_key-operator">÷</button>
+                <button type="submit" id="operator_plus" class="calculator_key calculator_key-operator" onclick="clickOperatorID(this.id)">+</button>
+                <button type="submit" id="operator_minus" class="calculator_key calculator_key-operator" onclick="clickOperatorID(this.id)">-</button>
+                <button type="submit" id="operator_multiply" class="calculator_key calculator_key-operator" onclick="clickOperatorID(this.id)">&times;</button>
+                <button type="submit" id="operator_divide" class="calculator_key calculator_key-operator" onclick="clickOperatorID(this.id)">÷</button>
                 <button type="submit" id="value_7" class="calculator_key" onclick="clickValueID(this.id)">7</button>
                 <button type="submit" id="value_8" class="calculator_key" onclick="clickValueID(this.id)">8</button>
                 <button type="submit" id="value_9" class="calculator_key" onclick="clickValueID(this.id)">9</button>
@@ -28,7 +28,7 @@
                 <button type="submit" id="value_0" class="calculator_key" onclick="clickValueID(this.id)">0</button>
                 <button type="submit" id="operator_dot" class="calculator_key" onclick="clickValueID(this.id)">.</button>
                 <button type="submit" id="operator_delite" class="calculator_key" onclick="clickOperatorID(this.id)">AC</button>
-                <button type="submit" id="operator_result" class="calculator_key calculator_key-enter">=</button>
+                <button type="submit" id="operator_result" class="calculator_key calculator_key-enter" onclick="clickOperatorID(this.id)">=</button>
             </div>
         </div>
     </form>
